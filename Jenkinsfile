@@ -12,6 +12,8 @@ pipeline {
             steps {
                 echo 'set up enviornment and libraries'
                 dir("./client"){
+                    sh 'apt update'
+                    sh 'apt install nodejs npm'
                     sh 'npm install'
                 }
                 
