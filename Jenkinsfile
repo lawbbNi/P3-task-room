@@ -2,20 +2,35 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Git checkout') {
             steps {
-                echo 'Building..'
+                echo 'git checkout'
+                git branch:'master', url:'https://github.com/lawbbNi/P3-task-room.git'
             }
         }
-        stage('Test') {
+        stage('envirnment') {
             steps {
-                echo 'Testing..'
+                echo 'set up enviornment and libraries'
+                dir("./client"){
+                    sh 'npm install'
+                }
+                
+
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+        stage('npm build'){
+            steps{
+                echo 'pack up front end code'
+                dir("./client"){
+                    sh 'npm run build'
+                }
             }
         }
+        stage('deploy to S3 bucket') {
+            steps {
+                echo 'deploy to S3 bucket'
+            }
+        }
+        
     }
 }
