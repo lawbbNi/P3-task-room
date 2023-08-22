@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'set up enviornment and libraries'
                 dir("./client"){
-                    sh 'sudo chown -R 115:122 "/.npm"'
+                    //sh 'sudo chown -R 115:122 "/.npm"'
                     sh 'npm install'
                 }
             }
