@@ -1,9 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-buster-slim'
-        }
-    }
+    agent any
+    // {
+    //     docker {
+    //         image 'node:lts-buster-slim'
+    //     }
+    // }
 
     stages {
         stage('Git checkout') {
@@ -39,6 +40,11 @@ pipeline {
                     }
                 }
                 
+            }
+        }
+        post{
+            alwasy{
+                cleanWs()
             }
         }
         
