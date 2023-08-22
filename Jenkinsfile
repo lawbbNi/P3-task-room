@@ -2,7 +2,7 @@ pipeline {
     agent 
     {
         docker {
-            image 'node:18-buster-slim'
+            image 'node:20-buster-slim'
         }
     }
 
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'set up enviornment and libraries'
                 dir("./client"){
-
+                    sh 'sudo chown -R 115:122 "/.npm"'
                     sh 'npm install'
                 }
             }
