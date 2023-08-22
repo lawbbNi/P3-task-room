@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:18.17.1-alpine3.18'
+            image 'node:18-alpine'
         }
     }
 
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo 'set up enviornment and libraries'
                 dir("./client"){
-                    sh 'sudo chown -R 115:122 "/.npm"'
+
                     sh 'npm install'
                 }
                 
