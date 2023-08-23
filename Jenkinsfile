@@ -7,12 +7,12 @@ pipeline {
     }
 
     stages {
-        stage('Git checkout') {
-            steps {
-                echo 'git checkout'
-                git branch:'master', url:'https://github.com/lawbbNi/P3-task-room.git'
-            }
-        }
+        // stage('Git checkout') {
+        //     steps {
+        //         echo 'git checkout'
+        //         git branch:'master', url:'https://github.com/lawbbNi/P3-task-room.git'
+        //     }
+        // }
         stage('envirnment') {
             steps {
                 echo 'set up enviornment and libraries'
