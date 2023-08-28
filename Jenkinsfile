@@ -1,10 +1,6 @@
 pipeline {
-    agent 
-    {
-        docker {
-            image 'node:18.17-buster-slim'
-        }
-    }
+    agent any
+    
 
     stages {
         // stage('git checkout'){
@@ -13,11 +9,14 @@ pipeline {
         //         sh 'git clone https://github.com/lawbbNi/P3-task-room.git'
         //     }
         // }
+
         stage('envirnment') {
             steps {
                 echo 'set up enviornment and libraries'
                 dir("./client"){
                     //sh 'sudo chown -R 115:122 "/.npm"'
+                    sh 'apt update'
+                    sh 'apt install npm'
                     sh 'npm install'
                 }
             }
