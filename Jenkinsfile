@@ -1,6 +1,7 @@
 pipeline {
     agent any
-    
+    tools {nodejs "nodejs"}
+
 
     stages {
         // stage('git checkout'){
@@ -15,8 +16,7 @@ pipeline {
                 echo 'set up enviornment and libraries'
                 dir("./client"){
                     //sh 'sudo chown -R 115:122 "/.npm"'
-                    sh 'apt update'
-                    sh 'apt install npm'
+                    
                     sh 'npm install'
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
         stage('deploy to S3 bucket') {
             steps {
                 echo 'deploy to S3 bucket'
-                withAWS(credentials: 'aws_jr_law', region: 'ap-southeast-2'){  
+                withAWS(credentials: 'aws-jr-p3-lawrence', region: 'ap-southeast-2'){  
                     dir("./client"){
                         sh 'aws s3 cp build s3://taskroom.click'
                         sh 'aws s3 cp index.html s3://taskroom.click'
